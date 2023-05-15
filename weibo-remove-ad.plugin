@@ -1,6 +1,6 @@
 #!name = 微博国际版去广告
 #!desc = 过滤微博广告及去除各部分推广模块
-#!icon = https://raw.githubusercontent.com/cty109163/Loon/main/weibo-remove-ad.plugin
+#!icon = https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Sina_Weibo.png
 [Rule]
 DOMAIN, dns.weibo.cn, REJECT
 DOMAIN, adstrategy.biz.weibo.com, REJECT

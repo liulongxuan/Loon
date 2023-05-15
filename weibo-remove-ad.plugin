@@ -1,3 +1,5 @@
+#!name = 微博国际版去广告
+#!desc = 过滤微博广告及去除各部分推广模块
 [Rule]
 DOMAIN, dns.weibo.cn, REJECT
 DOMAIN, adstrategy.biz.weibo.com, REJECT

@@ -1,0 +1,11 @@
+#!name = GOODNOTES6
+#!desc = 解锁notability,作者已删库，不可升级使用
+#!openUrl =  https://github.com/chxm1023/Script_X
+#!author = chxm1023 
+#!homepage = https://github.com/cty109163/Loon/tree/main
+#!icon = https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/Doraemon/Doraemon-1046.png
+
+[Script]
+http-response ^https?:\/\/notability\.com\/(global|subscriptions) script-path=https://raw.githubusercontent.com/cty109163/Loon/main/notability.jss, requires-body=true, tag=Notability
+[MITM]
+hostname = notability.com

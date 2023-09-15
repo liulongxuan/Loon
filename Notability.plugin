@@ -6,6 +6,6 @@
 #!icon = https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/Doraemon/Doraemon-1046.png
 
 [Script]
-http-response ^https?:\/\/notability\.com\/(global|subscriptions) script-path=https://raw.githubusercontent.com/cty109163/Loon/main/notability.jss, requires-body=true, tag=Notability
+http-response ^https?:\/\/notability\.com\/(global|subscriptions) script-path=https://raw.githubusercontent.com/cty109163/Loon/main/notability.js, requires-body=true, tag=Notability
 [MITM]
 hostname = notability.com

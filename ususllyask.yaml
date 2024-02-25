@@ -205,9 +205,9 @@ rules:
   - RULE-SET,AD,Advertise
   - RULE-SET,OpenAI, OpenAI
   - RULE-SET,Apple,Apple
-  - RULE-SET,OneDrive,Microsoft
+  - RULE-SET,OneDrive, Microsoft
   - RULE-SET,Github,Global
-  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Microsoft, Microsoft
   - RULE-SET,YouTube,Google
   - RULE-SET,Google,Google
   - RULE-SET,Telegram,Telegram

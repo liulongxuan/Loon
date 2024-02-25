@@ -124,7 +124,7 @@ proxy-groups:
 
   - {name: 🎮, <<: *pg}
 
-  - {name: Emby, <<: *pg, use: [Proxy, Subscribe2]}
+  - {name: Emby, <<: *pg, use: [Proxy, Proxy2]}
 
   - {name: Bilibili, type: select, proxies: [DIRECT, 🇭🇰 , 🇨🇳 ]}
 

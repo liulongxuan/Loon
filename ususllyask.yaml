@@ -89,22 +89,19 @@ i: &i {type: http, behavior: ipcidr, interval: 86400}
 ###结束
 
 proxy-providers:
-   Proxy: &Proxy
-    <<: *p
-    url: "https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/ppg"
-    path: ./proxy_providers/Proxy1.yaml
-  Proxy2: &Proxy2
-    <<: *p
-    url: "https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/clash"
-    path: ./proxy_providers/Proxy2.yaml
+  Subscribe1: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/clash}
+    # 在此将"http://your-service-provider"替换为你的机场订阅，推荐使用base64或者node list
+    # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程         
 
+  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/ppg}
+  
 proxies: null
 
 proxy-groups:
 
   #分流分组
 
-  - {name: Global, type: select, use: [Proxy, Proxy2], proxies: [🇭🇰 , 🇺🇸 , 🇸🇬 , 🇯🇵 , 🇨🇳 , DIRECT]}
+  - {name: Global, type: select, use: [Subscribe1, Subscribe2], proxies: [🇭🇰 , 🇺🇸 , 🇸🇬 , 🇯🇵 , 🇨🇳 , DIRECT]}
 
   - {name: Foreign websites, <<: *pg}
 
@@ -124,7 +121,7 @@ proxy-groups:
 
   - {name: 🎮, <<: *pg}
 
-  - {name: Emby, <<: *pg, use: [Proxy, Proxy2]}
+  - {name: Emby, <<: *pg, use: [Subscribe1, Subscribe2]}
 
   - {name: Bilibili, type: select, proxies: [DIRECT, 🇭🇰 , 🇨🇳 ]}
 

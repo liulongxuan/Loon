@@ -1,12 +1,4 @@
-# Author:https://github.com/Repcz
-# TG:https://t.me/QVQ_Channel
-# 以 '#' 或 '//' 开头的配置文件行为注释行
-#
-# 此配置仅适用于Clash Verge/ClashMetaForAndroid,其他ClashMeta客户端未经测试
-#
-# 最后更新时间: 2024-2-13 12:45
-#
-# ================
+#usuallyask.test（单订阅）
 
 mixed-port: 7893      # 混合端口 HTTP和SOCKS5用一个端口
 geodata-mode: true    #【Meta专属】使用geoip.dat数据库(默认：false使用mmdb数据库)
@@ -68,22 +60,22 @@ dns:
 ###建立锚点
     
 # 策略组引用相关参数
-pg: &pg {type: select, proxies: [🚀 手动切换, 🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点,  🇨🇳 台湾节点, ♻️ 自动选择, ⚠️ 故障转移, DIRECT]}
+pg: &pg {type: select, proxies: [Global, 🇭🇰 , 🇺🇸 , 🇸🇬 , 🇯🇵 ,  🇨🇳, ♻️ , ⚠️ , DIRECT]}
 
 # 订阅更新和延迟测试相关参数
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
 
 # 自动选择策略组：选取延迟最低节点
-auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
 
 # 手动选择策略组：手动选择想要的节点/策略组
-select: &select {type: select, use: [Subscribe]}
+select: &select {type: select, use: [Subscribe1, Subscribe2]}
 
 # 故障回退策略组：策略组将按顺序选择你列表中第一个可用的节点
-fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
 
 # 负载均衡策略组：不同的请求将使用不同的代理节点
-load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
+load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
 
 # classical规则相关
 c: &c {type: http, behavior: classical, interval: 86400}
@@ -97,61 +89,62 @@ i: &i {type: http, behavior: ipcidr, interval: 86400}
 ###结束
 
 proxy-providers:
-  Subscribe: {<<: *p, path: ./proxy-providers/Sub.yaml, url: "https://raw.githubusercontent.com/cty109163/Loon/main/clash.yaml"}
-    # 在此将"https://raw.githubusercontent.com/cty109163/Loon/main/clash.yaml"替换为你的机场订阅，推荐使用base64或者node list
+  Subscribe: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: "https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/neko"}
+    # 在此将"http://your-service-provider"替换为你的机场订阅，推荐使用base64或者node list
     # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程         
-               
+
+  
 proxies: null
 
 proxy-groups:
 
   #分流分组
 
-  - {name: 🚀 手动切换, type: select, use: [Subscribe], proxies: [🇭🇰 香港节点, 🇺🇸 美国节点, 🇸🇬 狮城节点, 🇯🇵 日本节点, 🇨🇳 台湾节点, DIRECT]}
+  - {name: Global, type: select, use: [Subscribe], proxies: [🇭🇰 , 🇺🇸 , 🇸🇬 , 🇯🇵 , 🇨🇳 , DIRECT]}
 
-  - {name: 🌏 国外网站, <<: *pg}
+  - {name: Foreign websites, <<: *pg}
 
-  - {name: 📽️ 国际媒体, <<: *pg}
+  - {name: Global medias, <<: *pg}
 
-  - {name: 🍎 苹果服务, <<: *pg}
+  - {name: Apple, <<: *pg}
 
-  - {name: 🖥️ 微软服务, <<: *pg}
+  - {name: Microsoft, <<: *pg}
 
-  - {name: 🌌 谷歌服务, <<: *pg}
+  - {name: Google, <<: *pg}
 
-  - {name: 📟 电报消息, <<: *pg}
+  - {name: Telegram, <<: *pg}
 
-  - {name: 🐦 推特消息, <<: *pg}
+  - {name: Twitter, <<: *pg}
 
-  - {name: 🤖 OpenAI, <<: *pg}
+  - {name: OpenAI, <<: *pg}
 
-  - {name: 🎮 游戏平台, <<: *pg}
+  - {name: 🎮, <<: *pg}
 
-  - {name: 📽️ Emby, <<: *pg, use: [Subscribe]}
+  - {name: Emby, <<: *pg, use: [Subscribe]}
 
-  - {name: 📺 哔哩哔哩, type: select, proxies: [DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点]}
+  - {name: Bilibili, type: select, proxies: [DIRECT, 🇭🇰 , 🇨🇳 ]}
 
-  - {name: 🌏 国内网站, type: select, proxies: [DIRECT, 🚀 手动切换]}
+  - {name: China, type: select, proxies: [DIRECT, Global]}
 
-  - {name: 🛑 广告拦截, type: select, proxies: [REJECT, DIRECT]}
+  - {name: Advertise, type: select, proxies: [REJECT, DIRECT]}
 
-  - {name: 🐟 兜底分流, <<: *pg}
+  - {name: Final, <<: *pg}
 
   #节点地区分组
 
-  - {name: 🇭🇰 香港节点, <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+  - {name: 🇭🇰 , <<: *auto, filter: "^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-  - {name: 🇺🇸 美国节点, <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+  - {name: 🇺🇸 , <<: *auto, filter: "^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-  - {name: 🇸🇬 狮城节点, <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+  - {name: 🇸🇬 , <<: *auto, filter: "^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-  - {name: 🇯🇵 日本节点, <<: *auto, filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
+  - {name: 🇯🇵 , <<: *auto, filter: "^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|校园|游戏|(\b(GAME)\b))).*$"}
 
-  - {name: 🇨🇳 台湾节点, <<: *auto, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"}
+  - {name: 🇨🇳 , <<: *auto, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)"}
 
-  - {name: ♻️ 自动选择, <<: *auto}
+  - {name: ♻️ , <<: *auto}
 
-  - {name: ⚠️ 故障转移, <<: *fallback}
+  - {name: ⚠️ , <<: *fallback}
 
 rule-providers:
 
@@ -198,6 +191,7 @@ rule-providers:
  # Emby
  Emby: {<<: *c, format: text, path: ./rule-providers/Emby.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/Emby.list}
 
+
  # 国际媒体
  ProxyMedia: {<<: *c, format: text, path: ./rule-providers/ProxyMedia.list,  url: https://github.com/Repcz/Tool/raw/X/Clash/Rules/ProxyMedia.list}
 
@@ -207,26 +201,26 @@ rule-providers:
 rules:
   #- SCRIPT,quic,REJECT
   #- RULE-SET,Download,DIRECT
-  - RULE-SET,AD,🛑 广告拦截
-  - RULE-SET,OpenAI,🤖 OpenAI
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,OneDrive,🖥️ 微软服务
-  - RULE-SET,Github,🖥️ 微软服务
-  - RULE-SET,Microsoft,🖥️ 微软服务
-  - RULE-SET,YouTube,🌌 谷歌服务
-  - RULE-SET,Google,🌌 谷歌服务
-  - RULE-SET,Telegram,📟 电报消息
-  - RULE-SET,Twitter,🐦 推特消息
-  - RULE-SET,BiliBili,📺 哔哩哔哩
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,Emby,📽️ Emby
-  - RULE-SET,ProxyMedia,📽️ 国际媒体
-  - RULE-SET,ProxyGFW,🌏 国外网站
-  - RULE-SET,ChinaDomain,🌏 国内网站
+  - RULE-SET,AD,Advertise
+  - RULE-SET,OpenAI, OpenAI
+  - RULE-SET,Apple,Apple
+  - RULE-SET,OneDrive, Microsoft
+  - RULE-SET,Github,Global
+  - RULE-SET,Microsoft, Microsoft
+  - RULE-SET,YouTube,Google
+  - RULE-SET,Google,Google
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,Twitter,Twitter
+  - RULE-SET,BiliBili,Bilibili
+  - RULE-SET,Steam,🎮
+  - RULE-SET,Epic,🎮 
+  - RULE-SET,Emby,Emby
+  - RULE-SET,ProxyMedia,Global medias
+  - RULE-SET,ProxyGFW,Foreign websites
+  - RULE-SET,ChinaDomain,Foreign websites
   - RULE-SET,Lan,DIRECT
-  - GEOIP,CN,🌏 国内网站
-  - MATCH,🐟 兜底分流
+  - GEOIP,CN,China
+  - MATCH,Final
 
 script:
   shortcuts:

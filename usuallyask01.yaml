@@ -66,16 +66,16 @@ pg: &pg {type: select, proxies: [Global, 🇭🇰 , 🇺🇸 , 🇸🇬 , 🇯�
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800}}
 
 # 自动选择策略组：选取延迟最低节点
-auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
+auto: &auto {type: url-test, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
 
 # 手动选择策略组：手动选择想要的节点/策略组
-select: &select {type: select, use: [Subscribe1, Subscribe2]}
+select: &select {type: select, use: [Subscribe]}
 
 # 故障回退策略组：策略组将按顺序选择你列表中第一个可用的节点
-fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
+fallback: &fallback {type: fallback, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
 
 # 负载均衡策略组：不同的请求将使用不同的代理节点
-load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe1, Subscribe2]}
+load-balance: &load-balance {type: load-balance, lazy: true, url: http://www.gstatic.com/generate_204, interval: 900, use: [Subscribe]}
 
 # classical规则相关
 c: &c {type: http, behavior: classical, interval: 86400}

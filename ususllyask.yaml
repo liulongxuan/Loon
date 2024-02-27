@@ -93,7 +93,7 @@ proxy-providers:
     # 在此将"http://your-service-provider"替换为你的机场订阅，推荐使用base64或者node list
     # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程         
 
-  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: "https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/ppg"}
+  Subscribe2: {<<: *p, path: ./proxy-providers/Sub2.yaml, url: "https://gist.githubusercontent.com/cty109163/45fe43bc3bdb0756a7a55de6adc94e68/raw/neko"}
   
 proxies: null
 

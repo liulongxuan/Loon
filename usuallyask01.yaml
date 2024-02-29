@@ -213,6 +213,7 @@ rules:
   - RULE-SET,Telegram,Telegram
   - RULE-SET,Twitter,Twitter
   - RULE-SET,BiliBili,Bilibili
+  - RULE-SET,Battle,🎮
   - RULE-SET,Steam,🎮
   - RULE-SET,Epic,🎮 
   - RULE-SET,Emby,Emby

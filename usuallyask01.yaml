@@ -217,7 +217,7 @@ rules:
   - RULE-SET,Emby,Emby
   - RULE-SET,ProxyMedia,Global medias
   - RULE-SET,ProxyGFW,Foreign websites
-  - RULE-SET,ChinaDomain,Foreign websites
+  - RULE-SET,ChinaDomain,DIRECT
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,China
   - MATCH,Final

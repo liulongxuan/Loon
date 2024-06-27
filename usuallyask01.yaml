@@ -89,7 +89,7 @@ i: &i {type: http, behavior: ipcidr, interval: 86400}
 ###结束
 
 proxy-providers:
-  Subscribe: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: "https://sub.store/download/cf-cdn_1719321843072?target=ClashMeta"}
+  Subscribe: {<<: *p, path: ./proxy-providers/Sub1.yaml, url: "https://vl.usuallyask.top/bestip/f79f634c-2b27-4d70-863c-a8a46949b03b"}
     # 在此将"http://your-service-provider"替换为你的机场订阅，推荐使用base64或者node list
     # Sub-Store生成的链接,可以直接替换上述url引号中的部分,具体见Sub-Store教程         
 

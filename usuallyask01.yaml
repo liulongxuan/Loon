@@ -48,7 +48,7 @@ proxy-providers:
       
   
 proxies:
-  - {name: cf-jp, server: fdtest.usuallyask.top, port: 443, client-fingerprint: randomized, type: vless, uuid: 8f5d637e-4e34-4ee0-824b-ff189c4c9dde, tls: true, tfo: false, skip-cert-verify: true, servername: fdtest.usuallyask.top, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: fdtest.usuallyask.top}}}
+  - {name: cf-jp, server: 172.104.127.132, port: 443, client-fingerprint: randomized, type: vless, uuid: 8f5d637e-4e34-4ee0-824b-ff189c4c9dde, tls: true, tfo: false, skip-cert-verify: true, servername: fdtest.usuallyask.top, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: fdtest.usuallyask.top}}}
         
   - name: PL-Atman
     type: hysteria2

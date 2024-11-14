@@ -1,5 +1,5 @@
 #!name=52pojie
-#!desc=• 吾爱破解每日签到：每天自动签到，轻松获取论坛积分，提升您的账户等级与权限,因账户强制掉登录，故Cookie有效期大概一周左右
+#!desc=强制掉登录故Cookie有效期大概一周左右，可能因MITM导致错误故获取cookie后禁用插件并将脚本添加到本地
 #!openUrl=https://www.52pojie.cn/home.php
 [MITM]
 hostname = www.52pojie.cn

@@ -16,9 +16,9 @@ hostname = notability.com
 *************************************/
 
 
-var chxm1023 = JSON.parse($response.body);
+var liulongxuan = JSON.parse($response.body);
 
-chxm1023 = {
+liulongxuan = {
    "data" : {
      "processAppleReceipt" : {
        "error" : 0,
@@ -43,4 +43,4 @@ chxm1023 = {
   }
 };
 
-$done({body : JSON.stringify(chxm1023)});
+$done({body : JSON.stringify(liulongxuan)});
